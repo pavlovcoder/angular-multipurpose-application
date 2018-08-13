@@ -1,0 +1,131 @@
+<div class="container">
+  <div [ngClass]="'p-1' + getClasses()">
+    Model consist of {{model.getProducts().length}} products.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div [ngClass]="'p-1' + getClasses()" [textContent]="'Product: ' + (model.getProduct(1)?.name || 'Empty')">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div [ngClass]="'p-1' + getClasses()">Product: {{model.getProduct(1)?.name || 'Empty'}}</div>
+  <div class="form-group m-t-1">
+    <label>Product</label>
+    <input class="form-control" [value]="model.getProduct(1)?.name || 'Empty'"/>
+  </div>
+  <div [class]="getClasses2(1)">
+    First product is {{model.getProduct(1).name}}.
+  </div>
+  <div [class]="getClasses2(2)">
+    Second product is {{model.getProduct(2).name}}.
+  </div>
+  <div class="p-1 my-3 alert" [class.alert-success]="model.getProduct(1).price < 50" [class.alert-danger]="model.getProduct(1).price >= 50">
+    Second product is {{model.getProduct(2).name}}
+  </div>
+  <div class="p-1" [ngClass]="getClassMap(1)">
+    First product is {{model.getProduct(1).name}}
+  </div>
+  <div class="p-2" [ngClass]="getClassMap(2)">
+    Second product is {{model.getProduct(2).name}}
+  </div>
+  <div class="p-3" [ngClass]="{'alert-success': model.getProduct(3).price < 50, 'alert-danger': model.getProduct(3).price >= 50}">
+    Third product is {{model.getProduct(3).name}}
+  </div>
+  <div class="p-1 alert-warning">
+    Here <span [style.fontSize]="fontSizeWithUnits">first</span> product is {{model.getProduct(1).name}}. 
+  </div>
+  <div class="p-1 alert-success">
+    Here <span [style.fontSize.px]="fontSizeWithoutUnits">second</span>
+    product is {{model.getProduct(2).name}}.
+  </div>
+  <div class="p-1 alert-warning">
+    <span [ngStyle]="getStyles(1)">First</span>
+    product is {{model.getProduct(1).name}}
+  </div>
+  <div class="p-1 alert-info">
+    <span [ngStyle]="getStyles(2)">Second</span>
+    product is {{model.getProduct(2).name}}
+  </div>
+  <div [ngClass]="getClassesByPosition(0)">
+    First product is {{getProductByPosition(0).name}} getting classes by position
+  </div>
+  <div [ngClass]="getClassesByPosition(1)">
+    Second product is {{getProductByPosition(1).name}} getting classes by position
+  </div>
+  <div class="m-2 p-2 alert info">
+    We've {{getProductCount()}} products.
+  </div>
+  <div *ngIf="getProductCount() > 4" class="alert-info p-1 m-t-3">
+    Model consist of more than 4 products.
+  </div>
+  <div *ngIf="getProductByPosition(0).name !== 'Skate board'" class="alert-info p-1 m-t-3">
+    First product isn't Skate board!
+  </div>
+  <div class="alert-info p-1 my-3" [ngSwitch]="getProductCount()">
+    <span *ngSwitchCase="2">We've 2 products.</span>
+    <span *ngSwitchCase="5">We've 5 products.</span>
+    <span *ngSwitchDefault>This's a default value.</span>
+  </div>
+  <div class="alert-info p-1 my-3" [ngSwitch]="getProduct(1).name">
+    <span *ngSwitchCase="targetName">Skate Board</span>
+    <span *ngSwitchCase="'Scuba tank'">Skuba tank</span>
+    <span *ngSwitchDefault>Other product</span>
+  </div>
+  <table class="table table-stripped table-dark table-hover my-3">
+    <tr class="bg-primary">
+      <th></th>
+      <th>Product</th>
+      <th>Category</th>
+      <th>Price</th>
+    </tr>
+    <tr *ngFor="let item of getProducts(); let i = index; let odd = odd; let first = first; let last = last; trackBy:getKey" [class.bg-warning]="odd" [class.bg-success]="!odd" [class.bg-danger]="first || last">
+      <td>{{i + 1}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.category}}</td>
+      <td *ngIf="!last">${{item.price}}</td>
+    </tr>
+  </table>
+  <ng-template #titleTemplate>
+    <h4 class="p-1 bg-success">Repeated content of the element</h4>
+    <h5>Just list of things:</h5>
+    <ol>
+      <li>Fisrt</li>
+      <li>Second</li>
+      <li>Third</li>
+      <li>Fourth</li>
+    </ol>
+  </ng-template>
+  <div class="alert-danger my-3">Danger block of content</div>
+  <ng-template [ngTemplateOutlet]="titleTemplate"></ng-template>
+  <div class="alert-info my-3">Info block of content</div>
+  <ng-template [ngTemplateOutlet]="titleTemplate"></ng-template>
+  <ng-template #buildingContract let-name="nameClient" let-location="locationCoordinate" let-price="priceExpenses" let-contractor="contractorName" let-startDate="startDate" let-endDate="endDate" class="my-3">
+    <table class="table table-stripped table-hover my-3">
+      <tr>
+        <th>Client name</th>
+        <th>Location of building</th>
+        <th>Contractor</th>
+        <th>Costs of project</th>
+        <th>Start date</th>
+        <th>End date</th>
+      </tr>
+      <tr>
+        <td>{{name}}</td>
+        <td>{{location}}</td>
+        <td>{{contractor}}</td>
+        <td>{{price}}</td>
+        <td>{{startDate}}</td>
+        <td>{{endDate}}</td>
+      </tr>
+    </table>
+  </ng-template>
+  <div class="alert-info my-3">This is a block for separation content.</div>
+  <ng-template [ngTemplateOutlet]="buldingContract" [ngTemplateOutletContext]="{nameClient: 'Richard Bedford'}"></ng-template>
+  <div class="alert-info my-3">This is a block for separation content.</div>
+  <ng-template [ngTemplateOutlet]="buildingContract" [ngTemplateOutletContext]="{nameClient: 'Li-Kuan Se-Dzink'}"></ng-template>
+  <div class="alert-danger my-3 p-2">
+    Next product is {{nextProduct.name}}
+  </div>
+</div>
