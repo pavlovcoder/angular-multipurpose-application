@@ -37,7 +37,7 @@ export class ProductComponent {
     return {
       fontSize: "40px",
       "margin.px": 120,
-      color: product.price > 50 ? "hsl(0, 80, 60)" : "hsl(100, 80, 60)"
+      color: product.price > 50 ? "hsl(0, 80, 60)" : "hsl(100, 80, 60)" 
     };
   }
 
@@ -62,7 +62,6 @@ export class ProductComponent {
   }
 
   getProductCount(): number {
-    console.log("Calling the method getProductCount().");
     return this.getProducts().length;
   }
 
@@ -74,7 +73,18 @@ export class ProductComponent {
     return this.model.getProducts().shift();
   }
 
+  getProductPrice(index: number): string {
+    let result = `Price after rounding ${Math.floor(this.getProduct(index).price)}`;
+    return result;
+  }
+
   targetName: string = 'Ship';
 
   counter: number = 1;
+
+  public selectedProduct: string;
+
+  public getSelected(product: Product): boolean {
+    return product.name == this.selectedProduct;
+  }
 }

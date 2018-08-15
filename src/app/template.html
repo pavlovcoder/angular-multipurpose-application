@@ -125,7 +125,26 @@
   <ng-template [ngTemplateOutlet]="buldingContract" [ngTemplateOutletContext]="{nameClient: 'Richard Bedford'}"></ng-template>
   <div class="alert-info my-3">This is a block for separation content.</div>
   <ng-template [ngTemplateOutlet]="buildingContract" [ngTemplateOutletContext]="{nameClient: 'Li-Kuan Se-Dzink'}"></ng-template>
-  <div class="alert-danger my-3 p-2">
-    Next product is {{nextProduct.name}}
+  <div class="alert-info my-3 p-2" [innerText]="getProductPrice(1)"></div>
+  <div class="alert alert-warning p-2 my-3">
+    Selected product from the table below: {{product.value || '(Empty)'}}
+  </div>
+  <table class="table tab-sm table-bordered table-hover table-stripped my-3">
+    <tr>
+      <th></th>
+      <th>Product</th>
+      <th>Category</th>
+      <th>Price</th>
+    </tr>
+    <tr *ngFor="let item of getProducts(); let i = index" (mouseover)="product.value=item.name" [class.bg-primary]="product.value==item.name">
+      <td>{{i + 1}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.category}}</td>
+      <td>${{item.price}}</td>
+    </tr>
+  </table>
+  <div class="form-group">
+    <label>Name of product</label>
+    <input #product type="text" class="form-control" (keyup.enter)="selectedProduct=product.value">
   </div>
 </div>
