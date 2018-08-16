@@ -147,4 +147,18 @@
     <label>Name of product</label>
     <input #product type="text" class="form-control" (keyup.enter)="selectedProduct=product.value">
   </div>
+  <div class="bg-primary p-2 my-3">Model data: {{jsonProduct}}</div>
+  <div class="form-group">
+    <label>Product</label>
+    <input class="form-control" [(ngModel)]="newProduct.name">
+  </div>
+  <div class="form-group">
+    <label>Category</label>
+    <input class="form-control" [(ngModel)]="newProduct.category">
+  </div>
+  <div class="form-group">
+    <label>Price</label>
+    <input class="form-control" [(ngModel)]="newProduct.price">
+  </div>
+  <button class="btn btn-primary" (click)="addProduct(newProduct)">Add</button>
 </div>

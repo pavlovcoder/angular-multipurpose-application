@@ -87,4 +87,14 @@ export class ProductComponent {
   public getSelected(product: Product): boolean {
     return product.name == this.selectedProduct;
   }
+
+  public newProduct: Product = new Product();
+
+  public get jsonProduct() {
+    return JSON.stringify(this.newProduct);
+  } 
+
+  public addProduct(p: Product) {
+    console.log(`New product ${this.jsonProduct}`);
+  }
 }
