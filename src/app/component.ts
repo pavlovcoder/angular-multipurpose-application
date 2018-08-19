@@ -4,7 +4,8 @@ import { Product } from './product.model';
 
 @Component({
   selector: "app",
-  templateUrl: "template.html"
+  templateUrl: "template.html",
+  styleUrls: ['./component.css']
 })
 
 export class ProductComponent {
@@ -96,5 +97,27 @@ export class ProductComponent {
 
   public addProduct(p: Product) {
     console.log(`New product ${this.jsonProduct}`);
+  }
+
+  public getValidationMessages(state: any, thingName: string) {
+    let thing: string = state.path || thingName;
+    let messages: string[] = [];
+
+    if (state.errors) {
+      for (let errorName in state.errors) {
+        switch (errorName) {
+          case 'required':
+            messages.push(`You must enter a ${thing}`);
+            break;
+          case 'minlength':
+            messages.push(`A ${thing} must be at least ${state.errors['minlength'].requiredLength} characters.`);
+            break;
+          case 'pattern':
+            messages.push(`The ${thing} contains illegal characters.`);
+            break;
+        }
+      }
+    }
+    return messages;
   }
 }

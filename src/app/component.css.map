@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAGA,yBAAyB;EACvB,MAAM,EAAE,iBAA+B;;AAEzC,uBAAuB;EACrB,MAAM,EAAE,iBAA6B",
+"sources": ["component.sass"],
+"names": [],
+"file": "component.css"
+}
