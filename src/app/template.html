@@ -148,25 +148,33 @@
     <input #product type="text" class="form-control" (keyup.enter)="selectedProduct=product.value">
   </div>
   <div class="alert alert-warning p-2 my-3">Model data: {{jsonProduct}}</div>
-  <form class="my-3" novalidate (ngSubmit)="addProduct(newProduct)">
+  <form class="my-3" novalidate ngForm="productForm" #form="ngForm" (ngSubmit)="submitForm(form)">
+    <div class="alert alert-danger p-2 mb-2" *ngIf="formSubmitted && form.invalid">
+      Captain, we have a problem with our form!
+      <ul>
+        <li *ngFor="let error of getFormValidationMessages(form)">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
     <div class="form-group">
       <label>Name</label>
       <input class="form-control" name="name" [(ngModel)]="newProduct.name" #name="ngModel" required minlength="5" pattern="^[A-Za-z ]+$">
-      <ul class="text-danger list-unstyled" *ngIf="name.dirty && name.invalid">
+      <ul class="text-danger list-unstyled" *ngIf="(formSubmitted || name.dirty) && name.invalid">
         <li *ngFor="let error of getValidationMessages(name)">{{ error }}</li>
       </ul>
     </div>
     <div class="form-group">
       <label>Category</label>
       <input class="form-control" name="category" [(ngModel)]="newProduct.category" #category="ngModel" required minlenth="5" pattern="^[A-Za-z ]+$">
-      <ul class="text-danger list-unstyled" *ngIf="category.dirty && category.invalid">
+      <ul class="text-danger list-unstyled" *ngIf="(formSubmitted || category.dirty) && category.invalid">
         <li *ngFor="let error of getValidationMessages(category)">{{ error }}</li>
       </ul>
     </div>
     <div class="form-group">
       <label>Price</label>
       <input class="form-control" name="price" [(ngModel)]="newProduct.price" #price="ngModel" required minlength="2" pattern="^[$1-9]+$">
-      <ul class="text-danger list-unstyled" *ngIf="price.dirty && price.invalid">
+      <ul class="text-danger list-unstyled" *ngIf="(formSubmitted || price.dirty) && price.invalid">
         <li *ngFor="let error of getValidationMessages(price)">{{ error }}</li>
       </ul>
     </div>
