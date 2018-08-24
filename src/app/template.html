@@ -173,11 +173,11 @@
     </div>
     <div class="form-group">
       <label>Price</label>
-      <input class="form-control" name="price" [(ngModel)]="newProduct.price" #price="ngModel" required minlength="2" pattern="^[$1-9]+$">
+      <input class="form-control" name="price" [(ngModel)]="newProduct.price" #price="ngModel" required minlength="2" pattern="^[0-9\.]+$">
       <ul class="text-danger list-unstyled" *ngIf="(formSubmitted || price.dirty) && price.invalid">
         <li *ngFor="let error of getValidationMessages(price)">{{ error }}</li>
       </ul>
     </div>
-    <button class="btn btn-primary" type="submit">Create</button>
+    <button class="btn btn-primary" type="submit" [disabled]="formSubmitted && form.invalid" [class.btn-secondary]="formSubmitted && form.invalid">Create</button>
   </form>
 </div>
