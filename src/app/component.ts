@@ -2,6 +2,7 @@ import { ApplicationRef, Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Model } from './repository.model';
 import { Product } from './product.model';
+import { ProductFormGroup } from './form.model';
 
 @Component({
   selector: "app",
@@ -11,6 +12,7 @@ import { Product } from './product.model';
 
 export class ProductComponent {
   model: Model = new Model();
+  form: ProductFormGroup = new ProductFormGroup();
 
   constructor(ref: ApplicationRef) {
     (<any>window).appRef = ref;
