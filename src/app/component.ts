@@ -19,6 +19,8 @@ export class ProductComponent {
     (<any>window).model = this.model;
   }
 
+  public pBackColor = "#C01C9D";
+
   getClasses(): string {
     return this.model.getProducts().length == 5 ? "alert alert-success alert-dismissible fade show my-4" : "alert alert-warning alert-dismissible fade show my-4";
   }
