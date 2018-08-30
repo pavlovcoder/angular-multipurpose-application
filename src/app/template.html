@@ -167,6 +167,13 @@
       </ul>
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="formSubmitted && form.invalid" [class.btn-secondary]="formSubmitted && form.invalid">Create</button>
+    <h4 class="my-3">Pick a highlight color</h4>
+    <div class="p-3" style="outline: 1px solid #000;">
+      <input type="radio" name="colors" (click)="pBackColor='#459965'">&nbsp;Green<br/>
+      <input type="radio" name="colors" (click)="pBackColor='#454B99'">&nbsp;Blue<br/>
+      <input type="radio" name="colors" (click)="pBackColor='#FF0000'">&nbsp;Red
+    </div>
     <p class="my-3 p-3" [appHighlight]="pBackColor">This element will have purple background-color.</p>
+    <p class="my-3 p-3" [appHighlight]="pBackColor" defaultColor="#00FFFB">This element have a default background-color before choosing a color from above menu.</p>
   </form>
 </div>

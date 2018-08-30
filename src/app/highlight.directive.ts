@@ -8,10 +8,12 @@ export class HighlightDirective {
 
   constructor(private el: ElementRef) { }
 
+  @Input() defaultColor: string;
+
   @Input('appHighlight') highlightColor: string;
 
   @HostListener('mouseenter') onmouseenter() {
-    this.highlight(this.highlightColor || 'red', '#ffffff');
+    this.highlight(this.highlightColor || this.defaultColor || 'red', '#ffffff');
   }
 
   @HostListener('mouseleave') nomouseleave() {
