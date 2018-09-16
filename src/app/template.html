@@ -34,7 +34,7 @@
     Third product is {{model.getProduct(3).name}}
   </div>
   <div class="p-1 alert-warning">
-    Here <span [style.fontSize]="fontSizeWithUnits">first</span> product is {{model.getProduct(1).name}}. 
+    Here <span [style.fontSize]="fontSizeWithUnits">first</span> product is {{model.getProduct(1).name}}.
   </div>
   <div class="p-1 alert-success">
     Here <span [style.fontSize.px]="fontSizeWithoutUnits">second</span>
@@ -176,4 +176,69 @@
     <p class="my-3 p-3" [appHighlight]="pBackColor">This element will have purple background-color.</p>
     <p class="my-3 p-3" [appHighlight]="pBackColor" defaultColor="#00FFFB">This element have a default background-color before choosing a color from above menu.</p>
   </form>
+  <div class="alert alert-success my-3">My birthday on the current year is {{ birthday | date:"MM/dd/yy" }}</div>
+  <div class="alert alert-warning my-3">My mother's birthday is {{ motherBirthday | date: format }}</div>
+  <button type="button" class="btn btn-primary my-3" (click)="toggleFormat()">Toggle Format</button>
+  <div class="alert alert-info my-3">My second birthday: {{ birthday |  date: 'fullDate' | uppercase}} 😃</div>
+  <div class="alert alert-danger my-3">Super power boost: {{ 4.525 | exponentialStrength: 8 }}</div>
+  <div class="card my-3">
+    <div class="card-header">
+      Super Heroe's Power
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="superhero_power">Normal power</span>
+          </div>
+          <input type="number" class="form-control" placeholder="Power..." aria-label="power" aria-describedby="power-addon" [(ngModel)]="power">
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="superhero_power_boost">Boost factor</span>
+          </div>
+          <input type="number" class="form-control" placeholder="Boost..." aria-label="boost" aria-describedby="boost-addon" [(ngModel)]="factor">
+        </div>
+      </li>
+      <li class="list-group-item">
+        Super Hero Power: {{ power | exponentialStrength: factor }}
+      </li>
+    </ul>
+  </div>
+  <div class="card my-3">
+    <div class="card-header">Hero Name</div>
+    <div class="card-body">
+      <div class="input-group my-2">
+        <input type="text" class="form-control" placeholder="Hero name..." #box (keyup.enter)="addHero(box.value); box.value = ''">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="reset()">Reset</button>
+        </div>
+      </div>
+      <ul class="list-group mb-2 mt-3">
+        <li class="list-group-item" *ngFor="let hero of ( heroes | flyingHeroes )">
+          {{ hero.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="card my-3">
+    <div class="card-header">Asynch Hero Message and AsyncPipe</div>
+    <div class="card-body">
+      <div class="alert alert-info my-2">Message: {{ message$ | async }}</div>
+      <button type="button" class="btn btn-primary mt-3" (click)="resend()">Resend</button>
+    </div>
+  </div>
+  <div class="card my-3">
+    <div class="card-header">Heroes from JSON file</div>
+    <div class="card-body">
+      <h3 class="my-3">All heroes from JSON:</h3>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let hero of ('../assets/heroes.json' | fetch)">{{ hero.name }}</li>
+      </ul>
+      <h3 class="my-3">Full JSON-file:</h3>
+      <p>{{ '../assets/heroes.json' | fetch | json }}</p>
+    </div>
+  </div>
 </div>

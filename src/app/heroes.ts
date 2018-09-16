@@ -1,0 +1,8 @@
+export interface Flyer { canFly: boolean; }
+export const HEROES = [
+    { name: 'Spider-Man', canFly: true },
+    { name: 'Batman', canFly: true },
+    { name: 'Hulk', canFly: false },
+    { name: 'Capitan America', canFly: true },
+    { name: 'Optimus Prime', canFly: false }
+];

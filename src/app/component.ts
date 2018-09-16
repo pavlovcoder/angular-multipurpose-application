@@ -3,6 +3,9 @@ import { NgForm } from '@angular/forms';
 import { Model } from './repository.model';
 import { Product } from './product.model';
 import { ProductFormGroup } from './form.model';
+import { HEROES } from './heroes';
+import { Observable, interval } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 @Component({
   selector: "app",
@@ -11,12 +14,27 @@ import { ProductFormGroup } from './form.model';
 })
 
 export class ProductComponent {
-  model: Model = new Model();
-  form: ProductFormGroup = new ProductFormGroup();
+  public birthday: any = new Date(2019, 2, 5);
+  public motherBirthday: any = new Date(2019, 6, 16);
+  public model: Model = new Model();
+  public form: ProductFormGroup = new ProductFormGroup();
+  public toggle = true;
+  public power = 10;
+  public factor = 3;
+  public heroes: any[] = [];
+  public canFly = true;
+  public message$: Observable<string>;
+  private messages = [
+    'You are my hero!',
+    'You are the best hero!',
+    'Will you be my hero ?'
+  ];
+
 
   constructor(ref: ApplicationRef) {
     (<any>window).appRef = ref;
     (<any>window).model = this.model;
+    this.reset();
   }
 
   public pBackColor = "#C01C9D";
@@ -43,7 +61,7 @@ export class ProductComponent {
     return {
       fontSize: "40px",
       "margin.px": 120,
-      color: product.price > 50 ? "hsl(0, 80, 60)" : "hsl(100, 80, 60)" 
+      color: product.price > 50 ? "hsl(0, 80, 60)" : "hsl(100, 80, 60)"
     };
   }
 
@@ -98,7 +116,7 @@ export class ProductComponent {
 
   public get jsonProduct() {
     return JSON.stringify(this.newProduct);
-  } 
+  }
 
   public addProduct(p: Product) {
     console.log(`New product ${this.jsonProduct}`);
@@ -147,4 +165,35 @@ export class ProductComponent {
     });
     return messages;
   }
+
+  public get format() {
+    return this.toggle ? 'shortDate' : 'fullDate';
+  }
+
+  public toggleFormat(): void {
+    this.toggle = !this.toggle;
+    console.log(this.toggle);
+  }
+
+  public addHero(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    const hero = {
+      name,
+      canFly: this.canFly
+    };
+    this.reset();
+    this.heroes.push(hero);
+  }
+
+  public reset(): void {
+    this.heroes = HEROES.slice();
+  }
+
+  public resend(): void {
+    this.message$ = interval(500).pipe(
+      map(i => this.messages[i]),
+        take(this.messages.length)
+      );
+    }
 }
