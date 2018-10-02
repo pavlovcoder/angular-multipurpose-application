@@ -1,3 +1,1 @@
-<p>
-  open-close-animation works!
-</p>
+<button [@openClose]="isOpen ? 'open' : 'closed'" type="button" class="btn btn-outline-danger btn-block" (click)="toggleStatus()">Click me for start Angular Animation: now isOpen is {{ isOpen ? 'Open' : 'Close' }}</button>
