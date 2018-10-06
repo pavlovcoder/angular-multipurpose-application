@@ -7,10 +7,25 @@ import { HighlightDirective } from './highlight.directive';
 import { ExponentialStrengthPipe } from './exponential-strength.pipe';
 import { FlyingHeroesPipe } from './flying-heroes.pipe';
 import { OpenCloseAnimationComponent } from './open-close-animation/open-close-animation.component';
+import { HttpClientComponent } from './http-client/http-client.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule],
-  declarations: [ProductComponent, HighlightDirective, ExponentialStrengthPipe, FlyingHeroesPipe, OpenCloseAnimationComponent],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    HttpClientModule
+  ],
+  declarations: [
+    ProductComponent,
+    HighlightDirective,
+    ExponentialStrengthPipe,
+    FlyingHeroesPipe,
+    OpenCloseAnimationComponent,
+    HttpClientComponent
+  ],
   bootstrap: [ProductComponent]
 })
 
