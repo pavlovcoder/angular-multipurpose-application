@@ -20,9 +20,33 @@ export class ConfigService {
 
   private configUrl = '../../assets/config.json';
 
+  /*
   public getConfigResponse(): Observable<HttpResponse<Config>> {
     return this.http.get<Config>(
       this.configUrl, { observe: 'response' }
+    );
+  }
+  */
+
+  public getConfig(): any {
+    return this.http.get<Config>(this.configUrl)
+      .pipe(
+        retry(3),
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error: HttpErrorResponse): any {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occured:', error.error.message);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}`,
+        `body was: ${error.error}`
+      );
+    }
+    return throwError(
+      'Something bad happened; please try again later.'
     );
   }
 }

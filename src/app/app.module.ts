@@ -9,6 +9,7 @@ import { FlyingHeroesPipe } from './flying-heroes.pipe';
 import { OpenCloseAnimationComponent } from './open-close-animation/open-close-animation.component';
 import { HttpClientComponent } from './http-client/http-client.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DownloaderComponent } from './downloader/downloader.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     ExponentialStrengthPipe,
     FlyingHeroesPipe,
     OpenCloseAnimationComponent,
-    HttpClientComponent
+    HttpClientComponent,
+    DownloaderComponent
   ],
   bootstrap: [ProductComponent]
 })

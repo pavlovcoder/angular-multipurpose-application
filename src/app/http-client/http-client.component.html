@@ -1,3 +1,22 @@
-<p>
-  http-client works!
-</p>
+<div class="card border-info my-3">
+  <div class="card-header">Get configuration from JSON file</div>
+  <div class="card-body text-info" *ngIf="config">
+    <p>Heroes API URL is "{{ config.heroesUrl }}"</p>
+    <p>Textfile URL is "{{ config.textfile }}"</p>
+    <div *ngIf="headers">
+      Response headers:
+      <ul>
+        <li *ngFor="let header of headers">{{header}}</li>
+      </ul>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="error">
+      {{ error | json }}
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-primary" (click)="clear(); showConfig()">Get</button>
+    <button type="button" class="btn btn-primary" (click)="clear(); showConfigResponse()">Get response</button>
+    <button type="button" class="btn btn-dark" (click)="clear()">Clear</button>
+    <button type="button" class="btn btn-danger" (click)="clear(); makeError()">Error</button>
+  </div>
+</div>
