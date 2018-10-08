@@ -36,6 +36,13 @@ export class ConfigService {
       );
   }
 
+  public getConfigResponse():
+    Observable<HttpResponse<Config>> {
+      return this.http.get<Config>(
+        this.configUrl, { observe: 'response' }
+      );
+    }
+
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occured:', error.error.message);
@@ -48,5 +55,12 @@ export class ConfigService {
     return throwError(
       'Something bad happened; please try again later.'
     );
+  }
+
+  public makeIntentionalError(): any {
+    return this.http.get('not/a/real/url')
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 }
