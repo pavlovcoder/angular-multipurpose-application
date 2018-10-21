@@ -10,6 +10,7 @@ import { OpenCloseAnimationComponent } from './open-close-animation/open-close-a
 import { HttpClientComponent } from './http-client/http-client.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DownloaderComponent } from './downloader/downloader.component';
+import { UploaderComponent } from './uploader/uploader.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { DownloaderComponent } from './downloader/downloader.component';
     FlyingHeroesPipe,
     OpenCloseAnimationComponent,
     HttpClientComponent,
-    DownloaderComponent
+    DownloaderComponent,
+    UploaderComponent
   ],
   bootstrap: [ProductComponent]
 })
