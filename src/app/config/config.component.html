@@ -1,3 +1,27 @@
-<p>
-  config works!
-</p>
+<div class="card border-warning mw-100 mb-3">
+  <div class="card-header">Angular XMLHttpClient - Testing</div>
+  <div class="card-body">
+    <div class="card border-warning mw-100">
+      <div class="card-header">Get configuration from JSON-file</div>
+      <div class="card-body text-warning">
+        <p class="mb-0" *ngIf="!config">Click to the buttons below, for getting appropriate results from the server...</p>
+        <ul class="list-group" *ngIf="config">
+          <li class="list-group-item">Corporations API URL is "{{config.corporationsUrl}}"</li>
+          <li class="list-group-item">Textfile URL is "{{config.textfile}}"</li>
+          <ng-container *ngIf="headers">
+            <li class="list-group-item list-group-item-warning" *ngFor="let header of headers">{{header}}</li>
+          </ng-container>
+          <ng-container *ngIf="errors">
+            <li class="list-group-item list-group-item-danger">{{error | json}}</li>
+          </ng-container>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <button (click)="clear(); showConfig()" type="button" class="btn btn-sm btn-outline-dark mr-2">Get</button>
+        <button (click)="clear(); showConfigResponse()" type="button" class="btn btn-sm btn-outline-dark mr-2">Get Response</button>
+        <button (click)="clear()" type="button" class="btn btn-sm btn-outline-dark mr-2">Clear</button>
+        <button (click)="clear(); makeError()" type="button" class="btn btn-sm btn-outline-danger">Error</button>
+      </div>
+    </div>
+  </div>
+</div>
