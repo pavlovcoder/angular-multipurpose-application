@@ -41,12 +41,11 @@ export class ConfigComponent {
   }
 
   public showConfigResponse(): void {
-    this.showConfigResponse.getConfigResponse()
+    this.configService.getConfigResponse()
       .subscribe(resp => {
         const keys = resp.headers.keys();
-        this.headers = keys.map(key => {
-          `${key}: ${resp.headers.get(key)}`;
-        });
+        this.headers = keys.map(key => 
+          `${key}: ${resp.headers.get(key)}`);
         this.config = { ... resp.body };
       });
   }
