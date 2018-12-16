@@ -23,19 +23,5 @@
         <button (click)="clear(); makeError()" type="button" class="btn btn-sm btn-outline-danger">Error</button>
       </div>
     </div>
-    <div class="card border-warning mw-100 mt-3">
-      <div class="card-header">Get text-file from the server:</div>
-      <div class="card-body text-warning">
-        <p class="mb-0" *ngIf="contents == undefined">Click to the buttons below, for getting content from the text-file...</p>
-        <ul class="list-group" *ngIf="contents !== undefined">
-          <li class="list-group-item">Content from the text-file:</li>
-          <li class="list-group-item">{{ contents }}</li>
-        </ul>
-      </div>
-      <div class="card-footer">
-        <button type="button" class="btn btn-sm btn-outline-dark mr-2" (click)="download()">Get content</button>
-        <button type="button" class="btn btn-sm btn-outline-danger" (click)="clear()">Clear</button>
-      </div>
-    </div>
   </div>
 </div>

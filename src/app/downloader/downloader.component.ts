@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { DownloaderService } from './downloader.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-downloader',
   templateUrl: './downloader.component.html',
-  providers: [ DownloaderService ]
+  providers: [ DownloaderService, MessageService ]
 })
 
 export class DownloaderComponent {
