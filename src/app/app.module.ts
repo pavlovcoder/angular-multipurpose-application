@@ -15,6 +15,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { DownloaderComponent } from './downloader/downloader.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { ConfigComponent } from './config/config.component';
+import { CitiesComponent } from './cities/cities.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { ConfigComponent } from './config/config.component';
     HttpClientComponent,
     DownloaderComponent,
     UploaderComponent,
-    ConfigComponent
+    ConfigComponent,
+    CitiesComponent
   ],
   bootstrap: [ProductComponent]
 })
